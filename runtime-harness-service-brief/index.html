@@ -150,17 +150,22 @@
       }
 
       .hero-shot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
+        padding: 10px;
         background: #071020;
       }
 
       .hero-shot img {
         display: block;
         width: 100%;
-        height: 100%;
-        min-height: 420px;
-        object-fit: cover;
-        object-position: top center;
+        height: auto;
+        min-height: 0;
+        border-radius: 6px;
+        object-fit: contain;
+        object-position: center;
       }
 
       .section {
@@ -502,7 +507,8 @@
           <p class="eyebrow">외주 디자인 의뢰 브리프 · 2026-06-25</p>
           <h1>실제 서비스 플레이 화면 PRD 및 와이어프레임</h1>
           <p class="lead">
-            이 문서는 현재 구현된 runtime gameplay 화면을 바탕으로, dev control bar가 없는
+            이 문서는 `명우 비지니스 호텔: 자정의 종소리` 테마의 현재 구현 runtime gameplay
+            화면을 바탕으로, dev control bar가 없는
             실제 사용자 서비스 화면을 디자인하기 위한 의도, 기능, 상태, 반응형 구조를 정리한
             전달용 브리프입니다.
           </p>
@@ -533,7 +539,7 @@
           </div>
         </div>
         <figure class="hero-shot">
-          <img src="assets/screenshots/06-reading-desktop.png" alt="현재 구현된 대사 화면 데스크톱 캡처" />
+          <img src="assets/screenshots/06-reading-desktop.png" alt="명우 비지니스 호텔 대사 화면 데스크톱 캡처" />
         </figure>
       </section>
 
@@ -569,44 +575,46 @@
       <section class="section">
         <h2>2. 현재 구현 스크린샷</h2>
         <p>
-          아래 이미지는 현재 구현된 `/dev/runtime-harness` 화면에서 dev-only control section을
-          숨긴 뒤 캡처했습니다. 외주사는 이 이미지를 “현 구현 기능과 정보 구조의 근거”로 보고,
-          최종 디자인에서는 실제 서비스 톤과 조작성을 강화하면 됩니다.
+          아래 이미지는 `명우 비지니스 호텔: 자정의 종소리` published theme id를 고정한
+          `/dev/runtime-harness` 화면에서 dev-only control section을 숨긴 뒤 캡처했습니다.
+          단서 화면은 실제 조사 후 단서를 획득한 상태, 정보 화면은 phase 정보가 전달된 상태입니다.
+          외주사는 이 이미지를 “현 구현 기능과 정보 구조의 근거”로 보고, 최종 디자인에서는
+          실제 서비스 톤과 조작성을 강화하면 됩니다.
         </p>
         <div class="shot-grid" style="margin-top: 18px">
           <figure class="shot-card">
             <img src="assets/screenshots/01-reading-mobile.png" alt="모바일 대사 화면" />
             <figcaption>
               <b>01 · 대사 모바일</b>
-              현재 대사 card, 진행률, 하단 action, 항상 보이는 탭 구조가 구현되어 있습니다.
+              명우 호텔 오프닝 대사, 진행률, 하단 action, 항상 보이는 탭 구조가 구현되어 있습니다.
             </figcaption>
           </figure>
           <figure class="shot-card">
             <img src="assets/screenshots/02-clues-mobile.png" alt="모바일 단서 화면" />
             <figcaption>
               <b>02 · 단서 모바일</b>
-              단서 탭은 모든 phase에서 접근 가능해야 하며, 권한 없는 상세는 열지 않습니다.
+              `2층 - 식당` 조사 후 획득한 단서가 단서 탭에 반영된 상태입니다.
             </figcaption>
           </figure>
           <figure class="shot-card">
             <img src="assets/screenshots/03-profile-mobile.png" alt="모바일 내 정보 화면" />
             <figcaption>
               <b>03 · 내 정보 모바일</b>
-              플레이어의 캐릭터/역할/목표 정보를 section 단위로 확인하는 영역입니다.
+              캐릭터 데이터 로딩 후 촬영한 화면입니다. 프로필/롤지 section을 분리해 확인합니다.
             </figcaption>
           </figure>
           <figure class="shot-card">
             <img src="assets/screenshots/04-info-mobile.png" alt="모바일 정보 화면" />
             <figcaption>
               <b>04 · 정보 모바일</b>
-              공개되거나 해금된 스토리 정보를 category/order 기준으로 읽는 영역입니다.
+              phase 진입으로 `오프닝` 정보가 획득되어 정보 탭에서 읽히는 상태입니다.
             </figcaption>
           </figure>
           <figure class="shot-card">
             <img src="assets/screenshots/05-case-board-mobile.png" alt="모바일 사건보드 화면" />
             <figcaption>
               <b>05 · 사건보드 모바일</b>
-              단서와 정보를 개인 작업대에 모아 비교하는 기능의 현재 구현 상태입니다.
+              정보 획득 run에서 접근한 사건보드입니다. 원본 단서/정보 visibility를 새로 열지 않습니다.
             </figcaption>
           </figure>
           <figure class="shot-card wide">
@@ -620,7 +628,7 @@
             <img src="assets/screenshots/07-investigation-mobile.png" alt="모바일 조사 화면" />
             <figcaption>
               <b>07 · 조사 모바일</b>
-              장소와 하위 장소를 보여주고, 조사 action은 backend 허용 여부로 제어합니다.
+              `2층 - 식당` 조사 결과 `식당` 단서를 획득한 순간의 modal 상태입니다.
             </figcaption>
           </figure>
           <figure class="shot-card">
@@ -689,7 +697,7 @@
               <tr>
                 <td>진행 헤더</td>
                 <td>진행 중인 게임, 단계, 남은 시간, 조사권, 진행률 표시</td>
-                <td>작게 고정하되 현재 단계와 제한 상태를 빠르게 읽을 수 있어야 한다.</td>
+                <td>작게 고정하되 현재 단계와 제한 상태를 빠르게 읽을 수 있어야 한다. 최종 서비스 디자인에서는 `명우 비지니스 호텔: 자정의 종소리`처럼 실제 테마명이 명확히 보여야 한다.</td>
               </tr>
               <tr>
                 <td>중앙 phase panel</td>
