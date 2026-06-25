@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>실제 서비스 플레이 화면 PRD 및 와이어프레임 브리프</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #657084;
+        --subtle: #8b95a7;
+        --paper: #f7f8fb;
+        --panel: #ffffff;
+        --panel-2: #eef2f7;
+        --line: #d7dee9;
+        --navy: #121a2a;
+        --blue: #2f6df6;
+        --violet: #5f4be3;
+        --yellow: #f1c84b;
+        --green: #2c9f7a;
+        --red: #d34a4a;
+        --radius: 8px;
+        --shadow: 0 18px 45px rgba(25, 35, 55, 0.12);
+        font-family:
+          Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.65;
+      }
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 20px 80px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 24px;
+        align-items: stretch;
+        margin-bottom: 24px;
+      }
+
+      .hero-copy,
+      .hero-shot,
+      .section,
+      .card,
+      .callout,
+      .table-wrap,
+      .wireframe {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 34px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        letter-spacing: 0;
+        line-height: 1.25;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 58px);
+      }
+
+      h2 {
+        margin: 0 0 18px;
+        font-size: 30px;
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      h4 {
+        margin: 0 0 6px;
+        font-size: 15px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .lead {
+        margin-top: 18px;
+        color: #38445b;
+        font-size: 18px;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .meta {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: #fbfcfe;
+      }
+
+      .meta b {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .meta span {
+        font-size: 14px;
+        font-weight: 750;
+      }
+
+      .hero-shot {
+        overflow: hidden;
+        background: #071020;
+      }
+
+      .hero-shot img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 420px;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .section {
+        margin-top: 18px;
+        padding: 28px;
+      }
+
+      .section.flat {
+        box-shadow: none;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .three-col {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        box-shadow: none;
+        padding: 18px;
+      }
+
+      .card p,
+      .card li {
+        color: #43506a;
+      }
+
+      .callout {
+        box-shadow: none;
+        margin: 18px 0;
+        padding: 16px 18px;
+        border-left: 5px solid var(--blue);
+        background: #f6f9ff;
+      }
+
+      .callout.warning {
+        border-left-color: var(--yellow);
+        background: #fff9e8;
+      }
+
+      .callout.danger {
+        border-left-color: var(--red);
+        background: #fff6f6;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .tag {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 10px;
+        background: #fff;
+        color: #38445b;
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      ul,
+      ol {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 5px;
+      }
+
+      .table-wrap {
+        box-shadow: none;
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f0f4fa;
+        color: #2d374d;
+        font-size: 13px;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .shot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .shot-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+      }
+
+      .shot-card.wide {
+        grid-column: span 2;
+      }
+
+      .shot-card img {
+        display: block;
+        width: 100%;
+        background: #071020;
+      }
+
+      .shot-card figcaption {
+        padding: 12px 14px 14px;
+        border-top: 1px solid var(--line);
+        color: #43506a;
+        font-size: 13px;
+      }
+
+      .shot-card figcaption b {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+      }
+
+      .wireframe {
+        box-shadow: none;
+        padding: 18px;
+        background: #f8fafc;
+      }
+
+      .phone-frame {
+        max-width: 360px;
+        margin: 0 auto;
+        border: 2px solid #2f384a;
+        border-radius: 28px;
+        padding: 12px;
+        background: #111827;
+      }
+
+      .phone-screen,
+      .desktop-screen {
+        border-radius: 18px;
+        overflow: hidden;
+        background: #071020;
+        color: #eff4ff;
+      }
+
+      .desktop-screen {
+        border-radius: var(--radius);
+      }
+
+      .wf-block {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .wf-top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .wf-header {
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .wf-main {
+        min-height: 360px;
+        padding: 12px;
+      }
+
+      .wf-card {
+        margin-top: 10px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .wf-footer {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        padding: 10px;
+        background: #f5f3ee;
+        color: #1c2432;
+      }
+
+      .wf-tab {
+        min-height: 42px;
+        border-radius: var(--radius);
+        background: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+        font-weight: 750;
+      }
+
+      .desktop-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 0;
+      }
+
+      .desktop-main {
+        min-height: 360px;
+        padding: 18px;
+      }
+
+      .desktop-aside {
+        border-left: 1px solid rgba(255, 255, 255, 0.14);
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .status-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .status-row {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fbfcfe;
+      }
+
+      .status-row b {
+        font-size: 13px;
+      }
+
+      .status-row span {
+        color: #43506a;
+        font-size: 14px;
+      }
+
+      .source-list code {
+        color: #2d374d;
+        background: #edf2f7;
+        border-radius: 5px;
+        padding: 2px 5px;
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          padding: 18px 12px 56px;
+        }
+
+        .hero,
+        .two-col,
+        .three-col {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy,
+        .section {
+          padding: 22px;
+        }
+
+        .meta-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .shot-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .shot-card.wide {
+          grid-column: span 1;
+        }
+
+        .desktop-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .desktop-aside {
+          border-left: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .status-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .page {
+          max-width: none;
+          padding: 0;
+        }
+
+        .hero-copy,
+        .hero-shot,
+        .section,
+        .card,
+        .wireframe,
+        .shot-card {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-label="문서 개요">
+        <div class="hero-copy">
+          <p class="eyebrow">외주 디자인 의뢰 브리프 · 2026-06-25</p>
+          <h1>실제 서비스 플레이 화면 PRD 및 와이어프레임</h1>
+          <p class="lead">
+            이 문서는 현재 구현된 runtime gameplay 화면을 바탕으로, dev control bar가 없는
+            실제 사용자 서비스 화면을 디자인하기 위한 의도, 기능, 상태, 반응형 구조를 정리한
+            전달용 브리프입니다.
+          </p>
+          <div class="meta-grid" aria-label="핵심 메타 정보">
+            <div class="meta">
+              <b>대상 화면</b>
+              <span>실시간 머더미스터리 플레이 화면</span>
+            </div>
+            <div class="meta">
+              <b>디자인 산출물</b>
+              <span>모바일/데스크톱 Figma 화면 및 컴포넌트</span>
+            </div>
+            <div class="meta">
+              <b>중요 기준</b>
+              <span>dev control 제외, backend truth 유지</span>
+            </div>
+          </div>
+          <div class="tag-row">
+            <span class="tag">대사</span>
+            <span class="tag">조사</span>
+            <span class="tag">단서</span>
+            <span class="tag">내 정보</span>
+            <span class="tag">정보</span>
+            <span class="tag">사건보드</span>
+            <span class="tag">투표</span>
+            <span class="tag">결말</span>
+            <span class="tag">음성</span>
+          </div>
+        </div>
+        <figure class="hero-shot">
+          <img src="assets/screenshots/06-reading-desktop.png" alt="현재 구현된 대사 화면 데스크톱 캡처" />
+        </figure>
+      </section>
+
+      <section class="section">
+        <h2>1. 디자인 의뢰 목적</h2>
+        <div class="two-col">
+          <div class="card">
+            <h3>무엇을 디자인하나</h3>
+            <p>
+              플레이어가 게임 중 실제로 보는 한 화면입니다. 대사를 읽고, 장소를 조사하고,
+              단서를 확인·공유·사용하고, 자기 역할과 공개 정보를 보고, 사건보드에 자료를 모아
+              비교하고, 투표와 결말을 확인하는 통합 플레이 화면을 디자인합니다.
+            </p>
+          </div>
+          <div class="card">
+            <h3>무엇을 디자인하지 않나</h3>
+            <p>
+              현재 개발용 페이지에 있는 run 생성, viewer 전환, phase jump, reading-line jump,
+              reset/end, raw diagnostics 같은 dev control은 실제 서비스 UI가 아닙니다. 디자인
+              시안에서는 노출하지 않거나 별도 개발자 도구로 분리합니다.
+            </p>
+          </div>
+        </div>
+        <div class="callout warning">
+          <b>정정된 기준</b>
+          <p>
+            기존 `/dev/runtime-harness`는 구현 검증용 화면입니다. 이 브리프에서는 그 화면에서
+            현재 구현된 플레이 요소만 참고하고, 사용자가 실제 서비스에서 보는 화면으로 재해석합니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>2. 현재 구현 스크린샷</h2>
+        <p>
+          아래 이미지는 현재 구현된 `/dev/runtime-harness` 화면에서 dev-only control section을
+          숨긴 뒤 캡처했습니다. 외주사는 이 이미지를 “현 구현 기능과 정보 구조의 근거”로 보고,
+          최종 디자인에서는 실제 서비스 톤과 조작성을 강화하면 됩니다.
+        </p>
+        <div class="shot-grid" style="margin-top: 18px">
+          <figure class="shot-card">
+            <img src="assets/screenshots/01-reading-mobile.png" alt="모바일 대사 화면" />
+            <figcaption>
+              <b>01 · 대사 모바일</b>
+              현재 대사 card, 진행률, 하단 action, 항상 보이는 탭 구조가 구현되어 있습니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/02-clues-mobile.png" alt="모바일 단서 화면" />
+            <figcaption>
+              <b>02 · 단서 모바일</b>
+              단서 탭은 모든 phase에서 접근 가능해야 하며, 권한 없는 상세는 열지 않습니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/03-profile-mobile.png" alt="모바일 내 정보 화면" />
+            <figcaption>
+              <b>03 · 내 정보 모바일</b>
+              플레이어의 캐릭터/역할/목표 정보를 section 단위로 확인하는 영역입니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/04-info-mobile.png" alt="모바일 정보 화면" />
+            <figcaption>
+              <b>04 · 정보 모바일</b>
+              공개되거나 해금된 스토리 정보를 category/order 기준으로 읽는 영역입니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/05-case-board-mobile.png" alt="모바일 사건보드 화면" />
+            <figcaption>
+              <b>05 · 사건보드 모바일</b>
+              단서와 정보를 개인 작업대에 모아 비교하는 기능의 현재 구현 상태입니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card wide">
+            <img src="assets/screenshots/06-reading-desktop.png" alt="데스크톱 대사 화면" />
+            <figcaption>
+              <b>06 · 대사 데스크톱</b>
+              중앙 플레이 영역과 오른쪽 최근 행동 aside가 함께 보이는 데스크톱 기준입니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/07-investigation-mobile.png" alt="모바일 조사 화면" />
+            <figcaption>
+              <b>07 · 조사 모바일</b>
+              장소와 하위 장소를 보여주고, 조사 action은 backend 허용 여부로 제어합니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/08-vote-question-mobile.png" alt="모바일 투표 질문 화면" />
+            <figcaption>
+              <b>08 · 투표 질문 모바일</b>
+              에디터에서 만든 질문과 선택지를 보여주며, 제출 가능 여부는 action 상태를 따릅니다.
+            </figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="assets/screenshots/09-ending-mobile.png" alt="모바일 결말 화면" />
+            <figcaption>
+              <b>09 · 결말 모바일</b>
+              최종 결과를 먼저 보여주고, 이후 응답 요약과 리뷰 덱으로 이어지는 구조입니다.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>3. 제품 원칙</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>플레이어는 지금 할 일을 즉시 안다</h3>
+            <p>
+              현재 단계의 핵심 행동이 중앙에 있어야 합니다. 예를 들어 대사 단계에서는 지금 읽을
+              문장, 조사 단계에서는 조사할 장소, 투표 단계에서는 답변할 질문이 첫 화면에서 보여야
+              합니다.
+            </p>
+          </div>
+          <div class="card">
+            <h3>보이는 것과 실행 가능한 것은 다르다</h3>
+            <p>
+              장소, 단서, 후보, 음성 채널은 보일 수 있지만 지금 실행 가능하다는 뜻은 아닙니다.
+              실행 불가는 숨기는 대신 disabled 상태와 짧은 이유 안내로 처리합니다.
+            </p>
+          </div>
+          <div class="card">
+            <h3>게임의 진실은 서버가 정한다</h3>
+            <p>
+              프론트 디자인은 누가 무엇을 볼 수 있는지, 어떤 결과가 나왔는지, 투표가 잠겼는지
+              임의로 추측하지 않습니다. 빈 상태와 로딩은 가능하지만 가짜 단서나 결과를 만들지
+              않습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>4. 실제 서비스 화면 정보 구조</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>영역</th>
+                <th>역할</th>
+                <th>디자인 요구</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>상단 현재 플레이어/음성 바</td>
+                <td>현재 캐릭터, 음성 연결, 듣기/말하기 상태 표시</td>
+                <td>viewer 전환 UI가 아니라 정적 현재 사용자 정보로 보이게 한다.</td>
+              </tr>
+              <tr>
+                <td>진행 헤더</td>
+                <td>진행 중인 게임, 단계, 남은 시간, 조사권, 진행률 표시</td>
+                <td>작게 고정하되 현재 단계와 제한 상태를 빠르게 읽을 수 있어야 한다.</td>
+              </tr>
+              <tr>
+                <td>중앙 phase panel</td>
+                <td>현재 단계의 주 행동 영역</td>
+                <td>대사/조사/투표/결말이 각각 다른 밀도를 가져도 shell은 일관되게 유지한다.</td>
+              </tr>
+              <tr>
+                <td>항상 보이는 탭</td>
+                <td>대사 또는 조사 + 단서 + 내 정보 + 정보 + 사건보드</td>
+                <td>탭 자체는 숨기지 않는다. 내용이 없으면 빈 상태를 보여준다.</td>
+              </tr>
+              <tr>
+                <td>하단 primary action</td>
+                <td>현재 단계의 대표 action 또는 대기 상태</td>
+                <td>모바일에서 엄지 조작 가능해야 하며 disabled 이유를 확인할 수 있어야 한다.</td>
+              </tr>
+              <tr>
+                <td>데스크톱 aside</td>
+                <td>최근 행동, 채팅, 보조 정보</td>
+                <td>중앙 흐름을 방해하지 않고 스캔 가능한 secondary 영역으로 둔다.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>5. 와이어프레임</h2>
+        <div class="two-col">
+          <div class="wireframe">
+            <h3>모바일 기본 구조</h3>
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <div class="wf-top">
+                  <div class="wf-block">현재 플레이어</div>
+                  <div class="wf-block">음성</div>
+                </div>
+                <div class="wf-header">
+                  <div class="wf-block">진행 단계 · 남은 시간 · 조사권</div>
+                  <div class="wf-block" style="margin-top: 8px">진행률 gauge</div>
+                </div>
+                <div class="wf-main">
+                  <div class="wf-block">현재 phase 제목</div>
+                  <div class="wf-card">
+                    현재 대사, 조사 장소, 투표 질문, 결말 결과 등 단계별 핵심 content
+                  </div>
+                  <div class="wf-card">보조 card / 목록 / detail / 빈 상태</div>
+                </div>
+                <div class="wf-block" style="margin: 0 10px 8px">primary action</div>
+                <div class="wf-footer">
+                  <div class="wf-tab">대사/조사</div>
+                  <div class="wf-tab">단서</div>
+                  <div class="wf-tab">내 정보</div>
+                  <div class="wf-tab">정보</div>
+                  <div class="wf-tab">사건보드</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wireframe">
+            <h3>데스크톱 기본 구조</h3>
+            <div class="desktop-screen">
+              <div class="wf-top">
+                <div class="wf-block">현재 플레이어</div>
+                <div class="wf-block">compact voice</div>
+              </div>
+              <div class="wf-header">
+                <div class="wf-block">게임/단계/남은 시간/진행률</div>
+              </div>
+              <div class="desktop-layout">
+                <div class="desktop-main">
+                  <div class="wf-block">중앙 phase panel</div>
+                  <div class="wf-card">큰 current content card</div>
+                  <div class="wf-card">목록, detail split, 비교, 질문 form</div>
+                </div>
+                <aside class="desktop-aside">
+                  <div class="wf-block">최근 행동</div>
+                  <div class="wf-card">activity / chat / 보조 상태</div>
+                </aside>
+              </div>
+              <div class="wf-footer">
+                <div class="wf-tab">대사/조사</div>
+                <div class="wf-tab">단서</div>
+                <div class="wf-tab">내 정보</div>
+                <div class="wf-tab">정보</div>
+                <div class="wf-tab">사건보드</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">
+          <b>와이어프레임 해석</b>
+          <p>
+            모바일은 하단 action과 탭 접근성이 우선입니다. 데스크톱은 중앙 phase panel을 넓게
+            유지하고, 오른쪽 aside에는 최근 행동이나 채팅 같은 보조 정보만 둡니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>6. 화면별 PRD</h2>
+        <div class="status-list">
+          <div class="status-row">
+            <b>대사</b>
+            <span>
+              이전 대화 기록은 현재 대사 위에 scroll 가능한 영역으로 둡니다. 현재 대사는 더 큰
+              card로 강조하고, `다음 대사`와 `오디오 확인`은 card 하단 action row에 둡니다.
+              진행 권한이 없는 사용자는 disabled 상태와 이유 안내를 봅니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>조사</b>
+            <span>
+              보이는 장소와 하위 장소는 card로 표시합니다. 조사 가능 여부는 버튼 상태로 나누고,
+              조사 성공 시 새 단서나 정보는 toast만이 아니라 기존 `단서`/`정보` 탭에서 highlight
+              됩니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>단서</b>
+            <span>
+              자기 단서, 다른 캐릭터 단서 title shell, 공유/전달/전체 공개/단서 사용 action을
+              한곳에서 다룹니다. 권한 없는 단서 detail은 열지 않고 `단서를 볼 권한이 없습니다`
+              안내만 보여줍니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>내 정보</b>
+            <span>
+              현재 캐릭터의 역할, 목표, 관계, 비밀, 공개된 hidden mission을 section 구조 그대로
+              보여줍니다. 관전자나 postgame에서는 캐릭터별 role/profile browser로 확장됩니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>정보</b>
+            <span>
+              해금된 이야기 정보의 canonical 위치입니다. category와 unlock order를 따르고,
+              새 정보는 toast와 item highlight를 함께 제공합니다. 비어 있는 category는 숨기지
+              않고 빈 상태를 보여줍니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>사건보드</b>
+            <span>
+              플레이어 개인 작업대입니다. 단서와 정보를 복사하지 않고 원본 item reference만 모아
+              순서 변경, 좌우 넘김, 비교 보기를 지원합니다. 사건보드는 새 권한을 열어주지 않습니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>투표</b>
+            <span>
+              일반 범인 투표로 고정하지 않고 에디터에서 만든 질문을 보여줍니다. 단일 선택, 복수
+              선택, 주관식 같은 schema를 따르며, 결과와 다른 사람의 선택은 서버가 공개할 때까지
+              숨깁니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>결말</b>
+            <span>
+              첫 화면은 “결과가 무엇인가”를 바로 보여줍니다. 이후 질문별 선택, 다른 결말 후보,
+              모든 단서/정보/역할지를 회고하는 slide deck 방식으로 확장합니다.
+            </span>
+          </div>
+          <div class="status-row">
+            <b>음성</b>
+            <span>
+              compact voice utility로 유지합니다. 현재 채널, 참가자, 듣기/말하기 상태를 보여주되,
+              채널 접근과 말하기 가능 여부는 서버 actionability를 따릅니다. 관전자는 기본 listen-only입니다.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>7. 상태 및 상호작용 규칙</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>상태</th>
+                <th>사용자에게 보이는 방식</th>
+                <th>주의사항</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Loading</td>
+                <td>`플레이 정보를 불러오는 중입니다`와 skeleton</td>
+                <td>전체 shell은 먼저 보여주고, 현재 panel만 skeleton 처리한다.</td>
+              </tr>
+              <tr>
+                <td>Fail-closed</td>
+                <td>`현재 플레이 정보를 불러올 수 없습니다`</td>
+                <td>가짜 대사, 단서, 결과, 권한을 만들어 표시하지 않는다.</td>
+              </tr>
+              <tr>
+                <td>Disabled action</td>
+                <td>버튼은 보이지만 disabled, 클릭/hover/focus 시 이유 표시</td>
+                <td>버튼 옆에 긴 이유 문장을 항상 붙이지 않는다.</td>
+              </tr>
+              <tr>
+                <td>Pending</td>
+                <td>버튼 단위 spinner, `요청 중`, 임시 잠금</td>
+                <td>공유된 게임 결과는 서버 snapshot 확인 후 확정한다.</td>
+              </tr>
+              <tr>
+                <td>Reconnect</td>
+                <td>기존 화면 유지 + 조작 action 잠금 + `재연결 중`</td>
+                <td>공유/전달/공개 modal은 닫아 stale command를 막는다.</td>
+              </tr>
+              <tr>
+                <td>Postgame</td>
+                <td>결말과 리뷰 덱, 모든 단서/정보/역할지 공개</td>
+                <td>gameplay action은 read-only 또는 disabled로 전환한다.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>8. 외주 디자인 산출 범위</h2>
+        <div class="two-col">
+          <div class="card">
+            <h3>필수 Figma 화면</h3>
+            <ul>
+              <li>모바일 390px 기준: 대사, 조사, 단서, 내 정보, 정보, 사건보드, 투표, 결말</li>
+              <li>데스크톱 1280px 기준: 대사, 단서 split/detail, 사건보드 비교, 결말 review</li>
+              <li>로딩, 빈 상태, 권한 없음, disabled reason, pending, reconnect</li>
+              <li>관전자 read-only/listen-only 상태</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>필수 컴포넌트</h3>
+            <ul>
+              <li>current player identity bar와 compact voice control</li>
+              <li>progress header, phase gauge, timer, action count</li>
+              <li>persistent bottom nav와 desktop nav variant</li>
+              <li>clue/info card, detail panel, action menu, toast, modal</li>
+              <li>case board rail, deck, compare card, reorder affordance</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout danger">
+          <b>명시적 제외</b>
+          <p>
+            dev control bar, phase jump, reading-line jump, viewer switch dropdown, reset/end run,
+            fixture fallback 배지, run/session id, snapshot revision, raw token, raw debug JSON은 실제
+            서비스 디자인에 포함하지 않습니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>9. 디자인 톤과 품질 기준</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>분위기</h3>
+            <p>
+              머더미스터리의 몰입감은 유지하되, 플레이 중 반복해서 쓰는 도구이므로 과한 장식보다
+              읽기 쉬운 대비, 안정적인 간격, 빠른 스캔이 중요합니다.
+            </p>
+          </div>
+          <div class="card">
+            <h3>모바일 조작성</h3>
+            <p>
+              하단 primary action과 탭은 한 손 조작이 가능해야 합니다. 긴 문장, 긴 단서명,
+              여러 선택지가 있어도 버튼과 텍스트가 겹치면 안 됩니다.
+            </p>
+          </div>
+          <div class="card">
+            <h3>정보 밀도</h3>
+            <p>
+              게임 중에는 빠른 판단이 필요합니다. 제목, 상태, action, detail을 명확히 나누고,
+              보조 설명은 card 내부의 두 번째 시선에 배치합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>10. 구현 기준 메모</h2>
+        <ul class="source-list">
+          <li>현재 구현 capture source: <code>/dev/runtime-harness</code></li>
+          <li>서비스 shell 기준: <code>GameLayout</code> + <code>RuntimeShell</code></li>
+          <li>중요 계약: frontend는 <code>RuntimeSnapshot</code>과 <code>availableActions</code>를 화면용으로 projection한다.</li>
+          <li>참고 문서: <code>docs/plans/2026-06-18-runtime-harness-adapter-prd-prep/README.md</code></li>
+          <li>dev control 제외 기준: <code>11-dev-harness-control-prd.md</code>의 service boundary</li>
+        </ul>
+        <div class="callout">
+          <b>디자인 업체 전달 문장</b>
+          <p>
+            “첨부된 스크린샷은 개발용 검증 페이지에서 현재 구현된 플레이 기능만 확인하기 위한
+            자료입니다. 최종 시안은 실제 유저가 접속한 게임 화면으로 보고, 개발자 조작 바와 raw
+            진단 정보는 제외해 주세요.”
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
